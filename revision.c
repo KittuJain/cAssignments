@@ -296,3 +296,11 @@ char reduceChar (char *array, int array_length, char (*function_ptr)(char,char,i
 	return result;
 }
 
+int indexOf(char *string, char *sub_string){
+	int i, len = strlen(string);
+	for(i = 0; i < len; i++){
+		if(string[i] == sub_string[0])
+			return i;
+	}
+	return -1;
+}

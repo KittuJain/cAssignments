@@ -582,3 +582,15 @@ void test_reduceChar () {
 	char (*p)(char, char) = &giveCharOfGreatestAsciiValue;
 	assertEqual(reduceChar(array, array_length, p, array[0]), 'o');
 }
+
+void test_indexOf_guys_in_hello_guys_is_7 () {
+	char *string = "hello guys";
+	char *sub_string = "guys";
+	assertEqual(indexOf(string,sub_string), 6);
+}
+
+void test_indexOf_guys_in_hello_world_is_negative_1 () {
+	char *string = "hello world";
+	char *sub_string = "guys";
+	assertEqual(indexOf(string,sub_string), -1);
+}
