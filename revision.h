@@ -1,0 +1,18 @@
+int fibo (int numberOfTerms,int *terms);
+int concat(int *array1, int len_of_array1, int *array2, int len_of_array2, int *result_array);
+int filter(int *array, int length, int threshold, int **result_array);
+int reverse(int *array, int length);
+int reverseReturnNewArray(int *array, int length, int *result_array);
+int slice(int *array,int len_of_array,int start_index, int end_index, int **result_array);
+int prime(int start_point, int end_point, int **result_array);
+int strCmp(char *string1,char *string2);
+int forEachInt(int *array, int array_length, void (*function)(int,int,int *));
+int forEachChar(char *array, int array_length, void (*function)(char,int,char *));
+int forEachFloat(float *array, int array_length, void (*function)(float,int,float *));
+int intArrayFilter(int *array, int array_length, int **resultArray, int (*function)(int));
+int floatArrayFilter(float *array, int array_length, float **resultArray, int (*function)(float));
+int charArrayFilter(char *array, int array_length, char **resultArray, int (*function)(char));
+int * mapInt(int *array, int array_length, int (*function)(int,int,int *));
+float * mapFloat(float *array, int array_length, float (*function)(float,int,float *));
+char * mapChar(char *array, int array_length, char (*function)(char,int,char *));
+int reduceInt (int *array, int array_length, int (*function_ptr)(int,int), int initialVlaue);
