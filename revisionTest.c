@@ -594,3 +594,27 @@ void test_indexOf_guys_in_hello_world_is_negative_1 () {
 	char *sub_string = "guys";
 	assertEqual(indexOf(string,sub_string), -1);
 }
+
+void test_indexOf_guys_in_hello_gs_is_negative_1 () {
+	char *string = "hello gs";
+	char *sub_string = "guys";
+	assertEqual(indexOf(string,sub_string), -1);
+}
+
+void test_indexof_str_is_0_in_string () {
+    char *mainString = "String";
+    char *sub_str = "Str";
+    assertEqual(indexOf(mainString, sub_str), 0);
+};
+
+void test_indexof_str_is_2_in_string () {
+    char *mainString = "String";
+    char *sub_str = "rin";
+    assertEqual(indexOf(mainString, sub_str), 2);
+};
+
+void test_indexof_str_is_minus_1_when_sub_string_is_not_matching_with_string () {
+    char *mainString = "String";
+    char *sub_str = "ren";
+    assertEqual(indexOf(mainString, sub_str), -1);
+};

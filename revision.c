@@ -298,9 +298,18 @@ char reduceChar (char *array, int array_length, char (*function_ptr)(char,char,i
 
 int indexOf(char *string, char *sub_string){
 	int i, len = strlen(string);
+	int count = 0;
 	for(i = 0; i < len; i++){
-		if(string[i] == sub_string[0])
-			return i;
+		if(sub_string[count] == string[i]){
+				count++;
+		}
+	}
+
+	for(i = 0; i < len; i++){
+		if(string[i] == sub_string[0]){
+			if(count == strlen(sub_string))
+				return i;
+		}
 	}
 	return -1;
 }
