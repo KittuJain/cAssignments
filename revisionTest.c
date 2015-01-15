@@ -571,3 +571,14 @@ void test_reduce_for_float_should_return_9_as_a_greatest_value_in_the_array () {
     float (*p)(float, float) = &giveGreatest;
     assertEqual(reduceFloat(array, array_length, p, array[0]), 9.3);
 }
+
+char giveCharOfGreatestAsciiValue (char previousValue, char currentValue){
+	return ((int)previousValue > (int)currentValue) ? previousValue : currentValue;
+}
+
+void test_reduceChar () {
+	char array[5] = {'h','e','l','l','o'};
+	int array_length = 5;
+	char (*p)(char, char) = &giveCharOfGreatestAsciiValue;
+	assertEqual(reduceChar(array, array_length, p, array[0]), 'o');
+}

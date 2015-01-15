@@ -275,10 +275,24 @@ float reduceFloat (float *array, int array_length, float (*function_ptr)(float,f
 	if(array_length == 0)
 		return 0;
 
-	for(counter = 1; counter < array_length-1; counter++){
+	for(counter = 1; counter < array_length; counter++){
 		result = function_ptr(initialValue,array[counter],counter,array);
 		initialValue = result;
-		
+
 	}
 	return result;
 }
+
+char reduceChar (char *array, int array_length, char (*function_ptr)(char,char,int, char *), float initialValue){
+	int counter;
+	char result;
+	if(array_length == 0)
+		return result;
+
+	for(counter = 1; counter < array_length; counter++){
+		result = function_ptr(initialValue,array[counter],counter,array);
+		initialValue = result;
+	}
+	return result;
+}
+

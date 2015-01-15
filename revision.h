@@ -17,3 +17,4 @@ float * mapFloat(float *array, int array_length, float (*function)(float,int,flo
 char * mapChar(char *array, int array_length, char (*function)(char,int,char *));
 int reduceInt (int *array, int array_length, int (*function_ptr)(int,int,int,int *), int initialValue);
 float reduceFloat (float *array, int array_length, float (*function_ptr)(float,float,int, float *), float initialValue);
+char reduceChar (char *array, int array_length, char (*function_ptr)(char,char,int, char *), float initialValue);
