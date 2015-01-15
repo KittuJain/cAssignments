@@ -15,4 +15,5 @@ int charArrayFilter(char *array, int array_length, char **resultArray, int (*fun
 int * mapInt(int *array, int array_length, int (*function)(int,int,int *));
 float * mapFloat(float *array, int array_length, float (*function)(float,int,float *));
 char * mapChar(char *array, int array_length, char (*function)(char,int,char *));
-int reduceInt (int *array, int array_length, int (*function_ptr)(int,int,int,int *), int initialVlaue);
+int reduceInt (int *array, int array_length, int (*function_ptr)(int,int,int,int *), int initialValue);
+float reduceFloat (float *array, int array_length, float (*function_ptr)(float,float,int, float *), float initialValue);

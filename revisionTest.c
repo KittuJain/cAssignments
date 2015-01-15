@@ -510,7 +510,6 @@ int addPVandCV (int previousValue, int currentValue) {
     return previousValue + currentValue;
 }
 void test_reduce_for_int_should_return_6_when_the_initial_value_is_0 () {
-    int result;
     int array[3] = {1, 2, 3};
     int array_length = 3;
     int (*p)(int, int) = &addPVandCV;
@@ -523,7 +522,6 @@ int giveGreatestValue (int previousValue, int currentValue) {
 }
 
 void test_reduce_for_int_should_return_6_as_a_greater_value_in_the_array () {
-    int result;
     int array[6] = {1, 2, 3, 6, 4, 5};
     int array_length = 6;
     int (*p)(int, int) = &giveGreatestValue;
@@ -535,9 +533,41 @@ int giveSmallest (int previousValue, int currentValue) {
 }
 
 void test_reduce_for_int_should_return_6_as_a_smallest_value_in_the_array () {
-    int result;
     int array[6] = {1, 2, 3, 6, 4, 5};
     int array_length = 6;
     int (*p)(int, int) = &giveSmallest;
     assertEqual(reduceInt(array, array_length, p, array[0]), 1);
+}
+
+float addFloatValues (float previousValue, float currentValue){
+	return previousValue + currentValue;
+}
+
+void test_reduceFloat () {
+	float array[6] = {1.2,2.2,3.5,4.3,5.1};
+	int array_length = 6;
+	float (*p)(float, float) = &addFloatValues;
+	assertEqual(reduceFloat(array, array_length, p, array[0]), 16.3);
+}
+
+float giveSmallestValue (float previousValue, float currentValue) {
+    return (previousValue < currentValue) ? previousValue : currentValue;
+}
+
+void test_reduce_for_float_should_return_1_as_a_smallest_value_in_the_array () {
+    float array[6] = {1.3, 2.8, 9.3, 1.6, 4.9, 5.3};
+    int array_length = 6;
+    float (*p)(float, float) = &giveSmallestValue;
+    assertEqual(reduceFloat(array, array_length, p, array[0]), 1.3);
+}
+
+float giveGreatest (float previousValue, float currentValue) {
+    return (previousValue > currentValue) ? previousValue : currentValue;
+}
+
+void test_reduce_for_float_should_return_9_as_a_greatest_value_in_the_array () {
+    float array[6] = {1.3, 2.8, 9.3, 1.6, 4.9, 5.3};
+    int array_length = 6;
+    float (*p)(float, float) = &giveGreatest;
+    assertEqual(reduceFloat(array, array_length, p, array[0]), 9.3);
 }

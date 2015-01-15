@@ -268,3 +268,17 @@ int reduceInt (int *array, int array_length, int (*function_ptr)(int,int,int,int
 	}
 	return result;
 }
+
+float reduceFloat (float *array, int array_length, float (*function_ptr)(float,float,int, float *), float initialValue){
+	int counter;
+	float result = 0.0;
+	if(array_length == 0)
+		return 0;
+
+	for(counter = 1; counter < array_length-1; counter++){
+		result = function_ptr(initialValue,array[counter],counter,array);
+		initialValue = result;
+		
+	}
+	return result;
+}
