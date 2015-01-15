@@ -502,6 +502,42 @@ int addTwoValues (int previousValue, int currentValue){
 void test_reduceInt_of_1_2_3_4_gives_10 () {
 	int array[4] = {1,2,3,4};
 	int array_length = 4;
-	int (*p)(int, int) = &addTwoValues;
+	int (*p)(int, int, int, int *) = &addTwoValues;
 	assertEqual(reduceInt(array, array_length, p, array[0]), 10);
+}
+
+int addPVandCV (int previousValue, int currentValue) {
+    return previousValue + currentValue;
+}
+void test_reduce_for_int_should_return_6_when_the_initial_value_is_0 () {
+    int result;
+    int array[3] = {1, 2, 3};
+    int array_length = 3;
+    int (*p)(int, int) = &addPVandCV;
+
+    assertEqual(reduceInt(array, array_length, p, array[0]), 6);
+}
+
+int giveGreatestValue (int previousValue, int currentValue) {
+    return (previousValue > currentValue) ? previousValue : currentValue;
+}
+
+void test_reduce_for_int_should_return_6_as_a_greater_value_in_the_array () {
+    int result;
+    int array[6] = {1, 2, 3, 6, 4, 5};
+    int array_length = 6;
+    int (*p)(int, int) = &giveGreatestValue;
+    assertEqual(reduceInt(array, array_length, p, array[0]), 6);
+}
+
+int giveSmallest (int previousValue, int currentValue) {
+    return (previousValue < currentValue) ? previousValue : currentValue;
+}
+
+void test_reduce_for_int_should_return_6_as_a_smallest_value_in_the_array () {
+    int result;
+    int array[6] = {1, 2, 3, 6, 4, 5};
+    int array_length = 6;
+    int (*p)(int, int) = &giveSmallest;
+    assertEqual(reduceInt(array, array_length, p, array[0]), 1);
 }

@@ -257,13 +257,13 @@ char * mapChar(char *array, int array_length, char (*function_ptr)(char,int,char
 	return resultArray;
 }
 
-int reduceInt (int *array, int array_length, int (*function_ptr)(int,int), int initialValue){
+int reduceInt (int *array, int array_length, int (*function_ptr)(int,int,int,int *), int initialValue){
 	int counter,result = 0;
 	if(array_length == 0)
 		return 0;
 
 	for(counter = 1; counter < array_length; counter++){
-		result = function_ptr(initialValue,array[counter]);
+		result = function_ptr(initialValue,array[counter],counter,array);
 		initialValue = result;
 	}
 	return result;
