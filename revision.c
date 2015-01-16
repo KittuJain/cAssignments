@@ -154,6 +154,16 @@ int forEachFloat(float *array, int array_length, void (*function_ptr)(float,int,
 	return 1;
 }
 
+int forEachString(char **array, int array_length, void (*function_ptr)(char *,int,char **)){
+	int i;
+	if(array_length == 0)
+		return 0;
+	for(i = 0; i < array_length; i++){
+		function_ptr(array[i],i,array);
+	}
+	return 1;
+}
+
 int intArrayFilter(int *array, int array_length, int **resultArray, int (*function_ptr)(int)){
 	int count,len=0;
 	if(array_length == 0)
