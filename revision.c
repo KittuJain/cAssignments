@@ -36,7 +36,7 @@ int filter(int *array, int length, int threshold, int **result_array){
 			length_of_filtered_array++;
 		}
 	}
-	*result_array = (int *)malloc(sizeof(int)*length_of_filtered_array);
+	*result_array = (int *)malloc((sizeof(int))*length_of_filtered_array);
 
 	for(i = 0; i < length; i++){
 		if(array[i]>=threshold){
@@ -263,6 +263,19 @@ char * mapChar(char *array, int array_length, char (*function_ptr)(char,int,char
 
 	for(counter = 0; counter < array_length; counter++){
 		resultArray[counter] = function_ptr(array[counter],counter,array);
+	}
+	return resultArray;
+}
+
+char ** mapString(char **array, int array_length, char *(*function_ptr)(char *,int, char **)){
+	int counter;
+	char **resultArray;
+	if(array_length == 0)
+		return 0;
+	resultArray = (char **)malloc((sizeof(char))*array_length);
+	
+	for(counter = 0; counter < array_length; counter++){
+		resultArray[counter] = (*function_ptr)(array[counter],counter, array);
 	}
 	return resultArray;
 }

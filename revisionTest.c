@@ -369,7 +369,7 @@ void test_forEachFloat_is_performed_for_four_elements (){
 
 void toUpperCase (char *string, int index, char **string_array) {
 	int i;
-	char* temp = (char*)malloc(sizeof(char *) * strlen(string));
+	char* temp = (char*)malloc(sizeof(char) * strlen(string));
 	for(i = 0; i < strlen(string); i++){
 		temp[i] = toupper(string[i]);
 	}
@@ -386,6 +386,13 @@ void test_forEachString () {
 	assertEqual(strcmp(array[1], "STAR"),0);
 	assertEqual(strcmp(array[2], "WORLD"),0);
 	assertEqual(strcmp(array[3], "KING"),0);
+}
+
+void test_forEachString_gives_0_for_no_length () {
+	char *array[0] = {};
+	int array_length = 0;
+	void (*p)(char *,int, char **) = &toUpperCase;
+	assertEqual(forEachString(array, array_length, p), 0);
 }
 
 int isGreaterThan2 (int element) {
@@ -504,7 +511,7 @@ int isGreaterThan2 (int element) {
  	return (char)incrementOfAscii;
  }
 
- void test_mapChar_is_performed_for_5_array_elements () {
+void test_mapChar_is_performed_for_5_array_elements () {
  	char charArray[5] = {'h','e','l','l','o'};
  	int array_length = 5;
  	char (*p)(char, int, char *) = &incrementCharBy2;
@@ -514,7 +521,23 @@ int isGreaterThan2 (int element) {
  	assertEqual((mapFunction)[2], 'n');
  	assertEqual((mapFunction)[3], 'n');
  	assertEqual((mapFunction)[4], 'q');
- }
+}
+
+char *map_gives_hi (char * string,int index, char **string_array){
+	if(!(strcmp(string,"Hello"))){
+		string = "hi";
+	}
+	return string;
+}
+
+void test_mapString_is_performed_for_2_array_elements () {
+ 	char *charArray[2] = {"Hello","You"};
+ 	int array_length = 5;
+ 	char (*p)(char*, int, char **) = &map_gives_hi ;
+ 	char **mapFunction = mapString(charArray, array_length, p);
+ 	assertEqual(strcmp(mapFunction[0], "hi"),0);
+ 	assertEqual(strcmp(mapFunction[1], "You"),0);
+}
 
  int addTwoValues (int previousValue, int currentValue){
  	return previousValue + currentValue;

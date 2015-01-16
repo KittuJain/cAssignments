@@ -16,6 +16,7 @@ int charArrayFilter(char *, int, char **, int (*)(char));
 int * mapInt(int *, int, int (*)(int,int,int *));
 float * mapFloat(float *, int, float (*)(float,int,float *));
 char * mapChar(char *, int, char (*)(char,int,char *));
+char ** mapString(char **, int, char *(*)(char *,int, char **));
 int reduceInt (int *, int, int (*)(int,int,int,int *), int);
 float reduceFloat (float *, int, float (*)(float,float,int, float *), float);
 char reduceChar (char *, int, char (*)(char,char,int, char *), float);
