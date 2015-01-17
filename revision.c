@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include "revision.h"
 
 int fibo (int numberOfTerms,int *terms){
@@ -33,10 +35,10 @@ int filter(int *array, int length, int threshold, int **result_array){
 
 	for(i = 0; i < length; i++){
 		if(array[i]>=threshold){
-			length_of_filtered_array++;
+			length_of_filtered_array++;	
 		}
 	}
-	*result_array = (int *)malloc((sizeof(int))*length_of_filtered_array);
+	*result_array = (int*)malloc(sizeof(int )*length_of_filtered_array);
 
 	for(i = 0; i < length; i++){
 		if(array[i]>=threshold){
@@ -239,7 +241,7 @@ int stringArrayFilter(char **array, int array_length, char ***resultArray, int (
 		}
 	}
 
-	*resultArray = (char *)malloc(sizeof(char)*len);
+	*resultArray = (char**)malloc(sizeof(char)*len);
 	len=0;
 	for(count = 0; count < array_length; count++){
 		if(function_ptr(array[count]) == 1){
@@ -297,47 +299,59 @@ char ** mapString(char **array, int array_length, char *(*function_ptr)(char *,i
 	
 	for(counter = 0; counter < array_length; counter++){
 		resultArray[counter] = (*function_ptr)(array[counter],counter, array);
-		printf("++++++++++++ %p -- %d\n", &resultArray[counter],counter);
+		// printf("++++++++++++ %p -- %d\n", &resultArray[counter],counter);
 	}
-		printf("outside-------- %s\n", resultArray[2]);
+		// printf("outside-------- %s\n", resultArray[2]);
 
 	return resultArray;
 }
 
-int reduceInt (int *array, int array_length, int (*function_ptr)(int,int,int,int *), int initialValue){
+int reduceInt (int *array, int array_length, int (*function_ptr)(int,int), int initialValue){
 	int counter,result = 0;
 	if(array_length == 0)
 		return 0;
 
 	for(counter = 1; counter < array_length; counter++){
-		result = function_ptr(initialValue,array[counter],counter,array);
+		result = function_ptr(initialValue,array[counter]);
 		initialValue = result;
 	}
 	return result;
 }
 
-float reduceFloat (float *array, int array_length, float (*function_ptr)(float,float,int, float *), float initialValue){
+float reduceFloat (float *array, int array_length, float (*function_ptr)(float,float), float initialValue){
 	int counter;
 	float result = 0.0;
 	if(array_length == 0)
 		return 0;
 
 	for(counter = 1; counter < array_length; counter++){
-		result = function_ptr(initialValue,array[counter],counter,array);
+		result = function_ptr(initialValue,array[counter]);
 		initialValue = result;
 
 	}
 	return result;
 }
 
-char reduceChar (char *array, int array_length, char (*function_ptr)(char,char,int, char *), float initialValue){
+char reduceChar (char *array, int array_length, char (*function_ptr)(char,char), char initialValue){
 	int counter;
 	char result;
 	if(array_length == 0)
 		return result;
 
 	for(counter = 1; counter < array_length; counter++){
-		result = function_ptr(initialValue,array[counter],counter,array);
+		result = function_ptr(initialValue,array[counter]);
+		initialValue = result;
+	}
+	return result;
+}
+
+char * reduceString (char **array, int array_length, char *(*function_ptr)(char *,char *), char *initialValue){
+	int counter;
+	char *result;
+	if(array_length == 0)
+		return result;
+	for(counter = 1; counter < array_length; counter++){
+		result = function_ptr(initialValue,array[counter]);
 		initialValue = result;
 	}
 	return result;
