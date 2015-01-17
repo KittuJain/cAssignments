@@ -13,6 +13,7 @@ int forEachString(char **, int, void (*)(char *,int,char **));
 int intArrayFilter(int *, int, int **, int (*)(int));
 int floatArrayFilter(float *, int, float **, int (*)(float));
 int charArrayFilter(char *, int, char **, int (*)(char));
+int stringArrayFilter(char **, int, char ***, int (*)(char*));
 int * mapInt(int *, int, int (*)(int,int,int *));
 float * mapFloat(float *, int, float (*)(float,int,float *));
 char * mapChar(char *, int, char (*)(char,int,char *));

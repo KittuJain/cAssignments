@@ -443,13 +443,13 @@ int isGreaterThan2 (int element) {
  	assertEqual(floatArrayFilter(array, array_length, &resultArray, p), 0);
  }
 
- int isElementGreaterThanAsciiOfO (char element) {
+int isElementGreaterThanAsciiOfO (char element) {
  	int asciiOfElement = (int)element;
  	int asciiOfO = (int)('o');
  	return asciiOfElement > asciiOfO;
- }
+}
 
- void test_filter_of_char_array_filters_array (){
+void test_filter_of_char_array_filters_array (){
  	char char_array[5] = {'w','o','r','l','d'};
  	int array_length = 5;
  	char *resultArray;
@@ -457,19 +457,33 @@ int isGreaterThan2 (int element) {
  	assertEqual(charArrayFilter(char_array, array_length, &resultArray, p), 1);
  	assertEqual(resultArray[0], 'w');
  	assertEqual(resultArray[1], 'r');
- }
+}
 
- void test_filter_of_char_arrays_of_zero_size_gives_0 (){
+void test_filter_of_char_arrays_of_zero_size_gives_0 (){
  	char array[] = {};
  	int array_length = 0;
  	char *resultArray;
  	int (*p)(char) = &isElementGreaterThanAsciiOfO;
  	assertEqual(charArrayFilter(array, array_length, &resultArray, p), 0);
- }
+}
 
- int addIndexInElement(int element, int index, int *array){
+int isElementHello (char *element){
+	return element == "hello";
+}
+
+void test_filter_of_string_array_filters_array (){
+ 	char *char_array[2] = {"hello","world"};
+ 	int array_length = 2;
+ 	char **resultArray;
+ 	int (*p)(char*) = &isElementHello;
+ 	assertEqual(stringArrayFilter(char_array, array_length, &resultArray, p), 1);
+	assertEqual(strcmp(resultArray[0], "hello"),0);
+	// assertEqual(strcmp(resultArray[1], "null"),0);
+}
+
+int addIndexInElement(int element, int index, int *array){
  	return element + index;
- }
+}
 
  void test_mapInt_is_performed_for_int_array_of_eight_elements (){
  	int array[8] = {1,2,3,4,5,6,7,8};
@@ -532,133 +546,133 @@ char *map_gives_hi (char * string,int index, char **string_array){
 
 void test_mapString_is_performed_for_2_array_elements () {
  	char *charArray[2] = {"Hello","You"};
- 	int array_length = 5;
+ 	int array_length = 2;
  	char (*p)(char*, int, char **) = &map_gives_hi ;
  	char **mapFunction = mapString(charArray, array_length, p);
  	assertEqual(strcmp(mapFunction[0], "hi"),0);
  	assertEqual(strcmp(mapFunction[1], "You"),0);
 }
 
- int addTwoValues (int previousValue, int currentValue){
- 	return previousValue + currentValue;
- }
+int addTwoValues (int previousValue, int currentValue){
+	return previousValue + currentValue;
+}
 
- void test_reduceInt_of_1_2_3_4_gives_10 () {
- 	int array[4] = {1,2,3,4};
- 	int array_length = 4;
- 	int (*p)(int, int, int, int *) = &addTwoValues;
- 	assertEqual(reduceInt(array, array_length, p, array[0]), 10);
- }
+void test_reduceInt_of_1_2_3_4_gives_10 () {
+	int array[4] = {1,2,3,4};
+	int array_length = 4;
+	int (*p)(int, int, int, int *) = &addTwoValues;
+	assertEqual(reduceInt(array, array_length, p, array[0]), 10);
+}
 
- int addPVandCV (int previousValue, int currentValue) {
-     return previousValue + currentValue;
- }
- void test_reduce_for_int_should_return_6_when_the_initial_value_is_0 () {
-     int array[3] = {1, 2, 3};
-     int array_length = 3;
-     int (*p)(int, int) = &addPVandCV;
+int addPVandCV (int previousValue, int currentValue) {
+ return previousValue + currentValue;
+}
+void test_reduce_for_int_should_return_6_when_the_initial_value_is_0 () {
+ int array[3] = {1, 2, 3};
+ int array_length = 3;
+ int (*p)(int, int) = &addPVandCV;
 
-     assertEqual(reduceInt(array, array_length, p, array[0]), 6);
- }
+ assertEqual(reduceInt(array, array_length, p, array[0]), 6);
+}
 
- int giveGreatestValue (int previousValue, int currentValue) {
-     return (previousValue > currentValue) ? previousValue : currentValue;
- }
+int giveGreatestValue (int previousValue, int currentValue) {
+ return (previousValue > currentValue) ? previousValue : currentValue;
+}
 
- void test_reduce_for_int_should_return_6_as_a_greater_value_in_the_array () {
-     int array[6] = {1, 2, 3, 6, 4, 5};
-     int array_length = 6;
-     int (*p)(int, int) = &giveGreatestValue;
-     assertEqual(reduceInt(array, array_length, p, array[0]), 6);
- }
+void test_reduce_for_int_should_return_6_as_a_greater_value_in_the_array () {
+ int array[6] = {1, 2, 3, 6, 4, 5};
+ int array_length = 6;
+ int (*p)(int, int) = &giveGreatestValue;
+ assertEqual(reduceInt(array, array_length, p, array[0]), 6);
+}
 
- int giveSmallest (int previousValue, int currentValue) {
-     return (previousValue < currentValue) ? previousValue : currentValue;
- }
+int giveSmallest (int previousValue, int currentValue) {
+ return (previousValue < currentValue) ? previousValue : currentValue;
+}
 
- void test_reduce_for_int_should_return_6_as_a_smallest_value_in_the_array () {
-     int array[6] = {1, 2, 3, 6, 4, 5};
-     int array_length = 6;
-     int (*p)(int, int) = &giveSmallest;
-     assertEqual(reduceInt(array, array_length, p, array[0]), 1);
- }
+void test_reduce_for_int_should_return_6_as_a_smallest_value_in_the_array () {
+ int array[6] = {1, 2, 3, 6, 4, 5};
+ int array_length = 6;
+ int (*p)(int, int) = &giveSmallest;
+ assertEqual(reduceInt(array, array_length, p, array[0]), 1);
+}
 
- float addFloatValues (float previousValue, float currentValue){
- 	return previousValue + currentValue;
- }
+float addFloatValues (float previousValue, float currentValue){
+	return previousValue + currentValue;
+}
 
- void test_reduceFloat () {
- 	float array[6] = {1.2,2.2,3.5,4.3,5.1};
- 	int array_length = 6;
- 	float (*p)(float, float) = &addFloatValues;
- 	assertEqual(reduceFloat(array, array_length, p, array[0]), 16.3);
- }
+void test_reduceFloat () {
+	float array[6] = {1.2,2.2,3.5,4.3,5.1};
+	int array_length = 6;
+	float (*p)(float, float) = &addFloatValues;
+	assertEqual(reduceFloat(array, array_length, p, array[0]), 16.3);
+}
 
- float giveSmallestValue (float previousValue, float currentValue) {
-     return (previousValue < currentValue) ? previousValue : currentValue;
- }
+float giveSmallestValue (float previousValue, float currentValue) {
+ return (previousValue < currentValue) ? previousValue : currentValue;
+}
 
- void test_reduce_for_float_should_return_1_as_a_smallest_value_in_the_array () {
-     float array[6] = {1.3, 2.8, 9.3, 1.6, 4.9, 5.3};
-     int array_length = 6;
-     float (*p)(float, float) = &giveSmallestValue;
-     assertEqual(reduceFloat(array, array_length, p, array[0]), 1.3);
- }
+void test_reduce_for_float_should_return_1_as_a_smallest_value_in_the_array () {
+ float array[6] = {1.3, 2.8, 9.3, 1.6, 4.9, 5.3};
+ int array_length = 6;
+ float (*p)(float, float) = &giveSmallestValue;
+ assertEqual(reduceFloat(array, array_length, p, array[0]), 1.3);
+}
 
- float giveGreatest (float previousValue, float currentValue) {
-     return (previousValue > currentValue) ? previousValue : currentValue;
- }
+float giveGreatest (float previousValue, float currentValue) {
+ return (previousValue > currentValue) ? previousValue : currentValue;
+}
 
- void test_reduce_for_float_should_return_9_as_a_greatest_value_in_the_array () {
-     float array[6] = {1.3, 2.8, 9.3, 1.6, 4.9, 5.3};
-     int array_length = 6;
-     float (*p)(float, float) = &giveGreatest;
-     assertEqual(reduceFloat(array, array_length, p, array[0]), 9.3);
- }
+void test_reduce_for_float_should_return_9_as_a_greatest_value_in_the_array () {
+ float array[6] = {1.3, 2.8, 9.3, 1.6, 4.9, 5.3};
+ int array_length = 6;
+ float (*p)(float, float) = &giveGreatest;
+ assertEqual(reduceFloat(array, array_length, p, array[0]), 9.3);
+}
 
- char giveCharOfGreatestAsciiValue (char previousValue, char currentValue){
- 	return ((int)previousValue > (int)currentValue) ? previousValue : currentValue;
- }
+char giveCharOfGreatestAsciiValue (char previousValue, char currentValue){
+	return ((int)previousValue > (int)currentValue) ? previousValue : currentValue;
+}
 
- void test_reduceChar () {
- 	char array[5] = {'h','e','l','l','o'};
- 	int array_length = 5;
- 	char (*p)(char, char) = &giveCharOfGreatestAsciiValue;
- 	assertEqual(reduceChar(array, array_length, p, array[0]), 'o');
- }
+void test_reduceChar () {
+	char array[5] = {'h','e','l','l','o'};
+	int array_length = 5;
+	char (*p)(char, char) = &giveCharOfGreatestAsciiValue;
+	assertEqual(reduceChar(array, array_length, p, array[0]), 'o');
+}
 
- void test_indexOf_guys_in_hello_guys_is_7 () {
- 	char *string = "hello guys";
- 	char *sub_string = "guys";
- 	assertEqual(indexOf(string,sub_string), 6);
- }
+void test_indexOf_guys_in_hello_guys_is_7 () {
+	char *string = "hello guys";
+	char *sub_string = "guys";
+	assertEqual(indexOf(string,sub_string), 6);
+}
 
- void test_indexOf_guys_in_hello_world_is_negative_1 () {
- 	char *string = "hello world";
- 	char *sub_string = "guys";
- 	assertEqual(indexOf(string,sub_string), -1);
- }
+void test_indexOf_guys_in_hello_world_is_negative_1 () {
+	char *string = "hello world";
+	char *sub_string = "guys";
+	assertEqual(indexOf(string,sub_string), -1);
+}
 
- void test_indexOf_guys_in_hello_gs_is_negative_1 () {
- 	char *string = "hello gs";
- 	char *sub_string = "guys";
- 	assertEqual(indexOf(string,sub_string), -1);
- }
+void test_indexOf_guys_in_hello_gs_is_negative_1 () {
+	char *string = "hello gs";
+	char *sub_string = "guys";
+	assertEqual(indexOf(string,sub_string), -1);
+}
 
- void test_indexof_str_is_0_in_string () {
-     char *mainString = "String";
-     char *sub_str = "Str";
-     assertEqual(indexOf(mainString, sub_str), 0);
- };
+void test_indexof_str_is_0_in_string () {
+ char *mainString = "String";
+ char *sub_str = "Str";
+ assertEqual(indexOf(mainString, sub_str), 0);
+};
 
- void test_indexof_str_is_2_in_string () {
-     char *mainString = "String";
-     char *sub_str = "rin";
-     assertEqual(indexOf(mainString, sub_str), 2);
- };
+void test_indexof_str_is_2_in_string () {
+ char *mainString = "String";
+ char *sub_str = "rin";
+ assertEqual(indexOf(mainString, sub_str), 2);
+};
 
- void test_indexof_str_is_minus_1_when_sub_string_is_not_matching_with_string () {
-     char *mainString = "String";
-     char *sub_str = "ren";
-     assertEqual(indexOf(mainString, sub_str), -1);
- };
+void test_indexof_str_is_minus_1_when_sub_string_is_not_matching_with_string () {
+ char *mainString = "String";
+ char *sub_str = "ren";
+ assertEqual(indexOf(mainString, sub_str), -1);
+};

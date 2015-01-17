@@ -229,6 +229,27 @@ int charArrayFilter(char *array, int array_length, char **resultArray, int (*fun
 	return 1;
 }
 
+int stringArrayFilter(char **array, int array_length, char ***resultArray, int (*function_ptr)(char*)){
+	int count,len=0;
+	if(array_length == 0)
+		return 0;
+	for(count = 0; count < array_length; count++){
+		if(function_ptr(array[count]) == 1){
+			len++;
+		}
+	}
+
+	*resultArray = (char *)malloc(sizeof(char)*len);
+	len=0;
+	for(count = 0; count < array_length; count++){
+		if(function_ptr(array[count]) == 1){
+			(*resultArray)[len] = array[count];
+			len++;
+		}
+	}
+	return 1;
+}
+
 int * mapInt(int *array, int array_length, int (*function_ptr)(int,int,int *)){
 	int counter,*resultArray;
 	if(array_length == 0)
@@ -276,7 +297,10 @@ char ** mapString(char **array, int array_length, char *(*function_ptr)(char *,i
 	
 	for(counter = 0; counter < array_length; counter++){
 		resultArray[counter] = (*function_ptr)(array[counter],counter, array);
+		printf("++++++++++++ %p -- %d\n", &resultArray[counter],counter);
 	}
+		printf("outside-------- %s\n", resultArray[2]);
+
 	return resultArray;
 }
 
