@@ -719,3 +719,9 @@ void test_indexOf_returns_2_for_mahesh_when_asked_for_hes (){
 	char *substr = "hes";
 	assertEqual(indexOf(str,substr),2);
 }
+
+void test_indexOf_returns_6_for_dumbledoreDORA_when_asked_for_dore (){
+	char *str = "dumbledoreDORA";
+	char *substr = "dore";
+	assertEqual(indexOf(str,substr),6);
+}

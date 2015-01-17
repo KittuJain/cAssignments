@@ -358,19 +358,18 @@ char * reduceString (char **array, int array_length, char *(*function_ptr)(char 
 }
 
 int indexOf(char *string, char *sub_string){
-	int i, len = strlen(string);
-	int count = 0;
-	for(i = 0; i < len; i++){
-		if(sub_string[count] == string[i]){
-				count++;
+	int result;
+	int stringlen = strlen(string);
+	char *string_occurence;
+	if (strlen(sub_string) > stringlen){
+		result = -1;
+	} else {
+		string_occurence = strstr(string, sub_string);
+		if (string_occurence == NULL) {
+			result = -1;
+		} else {
+			result = string_occurence - string;
 		}
 	}
-
-	for(i = 0; i < len; i++){
-		if(string[i] == sub_string[0]){
-			if(count == strlen(sub_string))
-				return i;
-		}
-	}
-	return -1;
+	return result;
 }
