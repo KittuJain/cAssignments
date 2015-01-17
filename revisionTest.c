@@ -481,6 +481,14 @@ void test_filter_of_string_array_filters_array (){
 	// assertEqual(strcmp(resultArray[1], "null"),0);
 }
 
+void test_filter_of_string_array_of_0_elements_gives_0 (){
+ 	char *char_array[0] = {};
+ 	int array_length = 0;
+ 	char **resultArray;
+ 	int (*p)(char*) = &isElementHello;
+ 	assertEqual(stringArrayFilter(char_array, array_length, &resultArray, p), 0);
+}
+
 int addIndexInElement(int element, int index, int *array){
  	return element + index;
 }
