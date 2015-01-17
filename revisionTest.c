@@ -11,7 +11,7 @@
  	terms = (int *)malloc(sizeof(int)*numberOfTerms);
  	assertEqual(fibo(numberOfTerms,terms),1);
  	free(terms);
- };
+ }
 
  void test_fibo_returns_0_for_less_than_1_term () {
  	int numberOfTerms = 0;
@@ -19,7 +19,7 @@
  	terms = (int *)malloc(sizeof(int)*numberOfTerms);
  	assertEqual(fibo(numberOfTerms,terms),0);
  	free(terms);
- };
+ }
 
  void test_fibo_returns_1_for_1_term () {
  	int numberOfTerms = 1;
@@ -28,7 +28,7 @@
  	assertEqual(fibo(numberOfTerms,terms),1);
  	assertEqual(terms[0], 0);
  	free(terms);
- };
+ }
 
  void test_fibo_shows_all_terms_of_fibo_series_till_5_terms () {
  	int numberOfTerms = 5;
@@ -41,7 +41,7 @@
  	assertEqual(terms[3], 2);
  	assertEqual(terms[4], 3);
  	free(terms);
- };
+ }
 
  void test_fibo_shows_all_terms_of_fibo_series_till_8_terms () {
  	int numberOfTerms = 8;
@@ -57,7 +57,7 @@
  	assertEqual(terms[6], 8);
  	assertEqual(terms[7], 13);
  	free(terms);
- };
+ }
 
  void test_concat_gives_concatenated_array (){
  	int array1[4] = {4,8,12,16}, array2[2] = {1,2};
@@ -74,7 +74,7 @@
  	assertEqual(result_array[4], 1);
  	assertEqual(result_array[5], 2);
  	free(result_array);
- };
+ }
 
  void test_concat_gives_concatenated_array_of_ten_elements (){
  	int array1[4] = {4,8,12,16}, array2[6] = {1,2,5,8,9,2};
@@ -95,7 +95,7 @@
  	assertEqual(result_array[8], 9);
  	assertEqual(result_array[9], 2);
  	free(result_array);
- };
+ }
 
  void test_filters_an_array_by_85_as_threshold () {
  	int scores[5] = {100,90,80,70,190};
@@ -105,7 +105,7 @@
  	assertEqual(result_array[1], 90);
  	assertEqual(result_array[2], 190);
  	free(result_array);
- };
+ }
 
  void test_filters_an_array_by_20_as_threshold () {
  	int scores[5] = {330,10,20,70,1390};
@@ -117,7 +117,7 @@
  	assertEqual(result_array[2], 70);
  	assertEqual(result_array[3], 1390);
  	free(result_array);
- };
+ }
 
  void test_reverses_an_array_from_1_2_3_4_to_4_3_2_1 (){
  	int array[4] = {1,2,3,4};
@@ -127,7 +127,7 @@
  	assertEqual(array[1],3 );
  	assertEqual(array[2],2 );
  	assertEqual(array[3],1 );
- };
+ }
 
  void test_reverses_an_array_from_12_42_63_74_67_to_67_74_63_42_12 (){
  	int array[] = {12, 42, 63, 74, 67, 78};
@@ -137,7 +137,7 @@
  	assertEqual(array[1],74 );
  	assertEqual(array[2],63 );
  	assertEqual(array[3],42 );
- };
+ }
 
  void test_reverses_an_array_and_returns_a_new_array () {
  	int array[] = {12,42,63,74,67,78};
@@ -149,7 +149,7 @@
  	assertEqual(result_array[2],63 );
  	assertEqual(result_array[3],42 );
  	free(result_array);
- };
+ }
 
  void test_slices_an_array_from_desired_start_and_end_index () {
  	int array[] = {0,7,8,9,-1,-3},len_of_array, start_index, end_index;
@@ -162,7 +162,7 @@
  	assertEqual(result_array[1], 9);
  	assertEqual(result_array[2], -1);
  	free(result_array);
- };
+ }
 
  void test_slices_an_array_and_doesnt_modifies_the_original__array () {
  	int array[8] = {-3,-9,0,3,1,6,7,9},len_of_array, start_index, end_index;
@@ -185,7 +185,7 @@
  	assertEqual(array[6], 7);
  	assertEqual(array[7], 9);
  	free(result_array);
- };
+ }
 
  void test_prime_returns_the_primary_numbers_between_1_and_5 (){
  	int start_point = 1;
@@ -196,7 +196,7 @@
  	assertEqual(result_array[1], 3);
  	assertEqual(result_array[2], 5);
  	free(result_array);
- };
+ }
 
  void test_prime_returns_the_primary_numbers_between_1_and_10 (){
  	int start_point = 1;
@@ -204,7 +204,7 @@
  	int *result_array;
  	assertEqual(prime(start_point, end_point, &result_array), 4);
  	free(result_array);
- };
+ }
 
  void test_prime_returns_the_primary_numbers_between_1_and_20 (){
  	int start_point = 1;
@@ -220,7 +220,7 @@
  	assertEqual(result_array[6], 17);
  	assertEqual(result_array[7], 19);
  	free(result_array);
- };
+ }
 
  void test_prime_returns_the_primary_numbers_between_1_and_100 (){
  	int start_point = 1;
@@ -253,46 +253,46 @@
  	assertEqual(result_array[23], 89);
  	assertEqual(result_array[24], 97);
  	free(result_array);
- };
+ }
 
  void test_prime_returns_the_primary_numbers_between_1_and_1000 (){
  	int start_point = 1;
  	int end_point = 1000;
  	int *result_array;
  	assertEqual(prime(start_point, end_point, &result_array), 168);
- };
+ }
 
  void test_string_compare_returns_32_for_comparison_between_hello_and_Hello () {
  	assertEqual(strCmp("hello","Hello"), 32);
- };
+ }
 
  void test_string_compare_returns_0_for_comparison_between_hello_and_hello () {
  	assertEqual(strCmp("hello","hello"), 0);
- };
+ }
 
  void test_string_compare_returns_0_for_comparison_between_hello_and_HELLO () {
  	assertEqual(strCmp("hello","HELLO"), 32);
- };
+ }
 
  void test_string_compare_returns_32_for_comparison_between_hello_and_HElLO () {
  	assertEqual(strCmp("hello","HELLO"), 32);
- };
+ }
 
  void test_string_compare_returns_negative_32_for_comparison_between_HELLO_and_hello () {
  	assertEqual(strCmp("HELLO","hello"), -32);
- };
+ }
 
  void test_string_compare_returns_3_for_comparison_between_hello_and_helllll () {
  	assertEqual(strCmp("hello","helllll"), 3);
- };
+ }
 
  void test_string_compare_returns_negative_3_for_comparison_between_helllll_and_hello () {
  	assertEqual(strCmp("helllll","hello"), -3);
- };
+ }
 
 void add(int element, int i, int *array){
 	array[i] = element + 1;
-};
+}
 
 void test_forEachInt_is_performed_for_int_array_of_four_elements (){
 	int array[4] = {1,2,3,4};
@@ -303,18 +303,18 @@ void test_forEachInt_is_performed_for_int_array_of_four_elements (){
 	assertEqual(array[1], 3);
 	assertEqual(array[2], 4);
 	assertEqual(array[3], 5);
-};
+}
 
 void test_forEachInt_returns_0_for_no_array_elements (){
 	int array[0] = {};
 	int array_length = 0;
 	void (*p)(int,int,int *) = &add;
 	assertEqual(forEachInt(array, array_length, p),0);
-};
+}
 
 void addIndex(int element, int i, int *array){
 	array[i] = element + i;
-};
+}
 
 void test_forEachInt_is_performed_for_int_array_of_eight_elements (){
 	int array[8] = {1,2,3,4,5,6,7,8};
@@ -329,13 +329,13 @@ void test_forEachInt_is_performed_for_int_array_of_eight_elements (){
 	assertEqual(array[5], 11);
 	assertEqual(array[6], 13);
 	assertEqual(array[7], 15);
-};
+}
 
 void incrementCharBy1 (char element, int index, char *array) {
 	int asciiOfElement = (int)element;
 	int incrementOfAscii = asciiOfElement + 1;
 	array[index] = (char)incrementOfAscii;
-};
+}
 
 void test_forEachChar_is_performed_for_5_array_elements () {
 	char charArray[5] = {'h','e','l','l','o'};
@@ -347,18 +347,18 @@ void test_forEachChar_is_performed_for_5_array_elements () {
 	assertEqual(charArray[2], 'm');
 	assertEqual(charArray[3], 'm');
 	assertEqual(charArray[4], 'p');
-};
+}
 
 void test_forEachChar_returns_0_for_no_array_elements (){
 	char charArray[0] = {};
 	int array_length = 0;
 	void (*p)(char,int,char *) = &incrementCharBy1;
 	assertEqual(forEachChar(charArray, array_length, p),0);
-};
+}
 
 void addFloat(float element, int i, float *array){
 	array[i] = element + 1.0;
-};
+}
 
 void test_forEachFloat_is_performed_for_four_elements (){
 	float array[] = {1.2,2.34,3.12,4.15};
@@ -369,7 +369,7 @@ void test_forEachFloat_is_performed_for_four_elements (){
 	assertEqual(array[1], (float)3.34);
 	assertEqual(array[2], (float)4.12);
 	assertEqual(array[3], (float)5.15);
-};
+}
 
 void toUpperCase (char *string, int index, char **string_array) {
 	int i;
@@ -512,7 +512,7 @@ int addIndexInElement(int element, int index, int *array){
  	assertEqual((mapFunction)[5], 11);
  	assertEqual((mapFunction)[6], 13);
  	assertEqual((mapFunction)[7], 15);
- };
+ }
 
  float addForMapFloat(float element, int index, float *array){
  	return element + index;
@@ -688,16 +688,34 @@ void test_indexof_str_is_0_in_string () {
  char *mainString = "String";
  char *sub_str = "Str";
  assertEqual(indexOf(mainString, sub_str), 0);
-};
+}
 
 void test_indexof_str_is_2_in_string () {
  char *mainString = "String";
  char *sub_str = "rin";
  assertEqual(indexOf(mainString, sub_str), 2);
-};
+}
 
 void test_indexof_str_is_minus_1_when_sub_string_is_not_matching_with_string () {
  char *mainString = "String";
  char *sub_str = "ren";
  assertEqual(indexOf(mainString, sub_str), -1);
-};
+}
+
+void test_indexOf_returns_neg_1_for_dumbledoreDORA_when_asked_for_fore (){
+	char *str = "dumbledoreDORA";
+	char *substr = "fore";
+	assertEqual(indexOf(str,substr),-1);
+}
+
+void test_indexOf_returns_neg_1_for_dumbledoreDORA_when_asked_for_oree (){
+	char *str = "dumbledoreDORA";
+	char *substr = "oree";
+	assertEqual(indexOf(str,substr),-1);
+}
+
+void test_indexOf_returns_2_for_mahesh_when_asked_for_hes (){
+	char *str = "mahesh";
+	char *substr = "hes";
+	assertEqual(indexOf(str,substr),2);
+}

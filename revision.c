@@ -290,7 +290,7 @@ char * mapChar(char *array, int array_length, char (*function_ptr)(char,int,char
 	return resultArray;
 }
 
-char ** mapString(char **array, int array_length, char *(*function_ptr)(char *,int, char **)){
+char **mapString(char **array, int array_length, char *(*function_ptr)(char *,int, char **)){
 	int counter;
 	char **resultArray;
 	if(array_length == 0)
